@@ -1,0 +1,5 @@
+- server
+1. 이름, 플레이 시작 시간, 플레이 종료 시간, 점수를 JSON파일(가명 result.json)에 저장하는 api생성
+2. result.json을 불러와서 상위랭킹 7개를 리스트로 뿌려주는 api생성
+
+- client
