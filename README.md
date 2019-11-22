@@ -14,3 +14,4 @@ Github 주소 : https://github.com/yusop795/typingPractice
 
 ## Client
 - React
+- SPA (React-Router 사용)
