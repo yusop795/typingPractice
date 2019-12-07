@@ -1,13 +1,19 @@
-function write () {
-    // writeFile('text.txt', 'data', 'utf8', function(err) {
-    //     //파일을 저장한다.
-    //     console.log('비동기적 파일 쓰기 완료');
-    // });
-    return new File(['data'],'text.txt',{type:'text/plan'});
+const fs = require("fs");
+
+function rank(name, point) {
+    fs.readFile("rank.json", "utf8", (err, data) => {
+        data = JSON.parse(data);
+        data.push({ name, point });
+
+        data = data.sort(function(a, b) {
+            return parseInt(b["point"]) - parseInt(a["point"]);
+        });
+
+        const result = data.slice(0, 10);
+        fs.writeFile("rank.json", JSON.stringify(result), "utf8", function(err) {
+            return result;
+        });
+    });
 }
 
-// function read (){
-//     fs.readFile('text.txt', (err,data)=>{
-//         console.log('data : ' + data)
-//     });
-// }
+module.exports = rank;
