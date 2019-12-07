@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css?family=Bebas+Neue|Noto+Sans+KR|Sunflower:300&display=swap");
+
+body {
+  font-family: "Noto Sans KR", "Bebas Neue", sans-serif;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.top_container {
+  display: flex;
+}
+.container {
+  padding: 20px;
+  min-width: 600px;
+  h1 {
+    text-align: center;
+  }
+}
+.ready_container {
+  padding: 20px 0;
+  text-align: center;
+}
+.btn_wrap {
+  padding: 20px 0;
+}
+.page_to {
+  display: inline-block;
+  padding: 8px 12px;
+  color: #555;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 3px;
+  color: #fff;
+  background: dodgerblue;
+  &:hover {
+    background: deepskyblue;
+  }
+}

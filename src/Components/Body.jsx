@@ -1,21 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "./App.scss";
 
-function Body() {
-  return (
-    <div>
-      <ul>
-        <li>
-          <input type="text" placeholder={"이름을 입력해 주세요."} />
-        </li>
-        <li>
-          <Link to="/typingfield">
-            <button type="button">게임 시작</button>
-          </Link>
-        </li>
-      </ul>
-    </div>
-  );
+class Body extends React.Component {
+  render() {
+    return (
+      <div className="ready_to_container">
+        <a href="/ready" className="game_ready_to">
+          처음부터 시작하기
+        </a>
+      </div>
+    );
+  }
 }
 
 export default Body;
