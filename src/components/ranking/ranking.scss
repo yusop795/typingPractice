@@ -1,0 +1,28 @@
+.ranking_container {
+  width: 30%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 3px;
+  background-color: darkorange;
+  color: #fff;
+  strong {
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+.rank_list {
+  li {
+    &::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }
+}
+.ranker_name {
+  float: left;
+}
+.ranker_point {
+  float: right;
+}

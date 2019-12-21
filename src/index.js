@@ -1,11 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./Components/App";
+import { Provider } from "react-redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import { initialReducer, initializeState } from "./reducers";
+
+import App from "./routes/App";
 import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+/* 추가해야 할 리듀서가 생긴다면 combineReducers를 사용한다*/
+// const rootReducer = combineReducers({ initialReducer });
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+/* store 생성 */
+const store = createStore(
+  initialReducer, // action to handle
+  initializeState
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+
 serviceWorker.unregister();
