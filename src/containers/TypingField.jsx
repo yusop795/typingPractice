@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 import scriptHelper from "../helpers/scriptHelper";
 import Textbox from "../components/textbox/Textbox";
 import Ranking from "../components/ranking/Ranking";
@@ -15,7 +16,9 @@ https://opendict.korean.go.kr/api/search?certkey_no=1161&key=${word_api_key}&tar
 class TypingField extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      food_words: []
+    };
   }
   /* xml */
   getWordsFrom = () => {
@@ -28,16 +31,31 @@ class TypingField extends React.Component {
     });
   };
   componentDidMount() {
-    this.getWordsFrom();
+    // const list_up = Array.from(this.props.food_list.slice(0, 100));
+    // console.log("list_up", typeof list_up, list_up);
+    // this.setState({
+    //   food_words: list_up
+    // });
+    this.props.actionReducerCall({
+      type: "INITIAL_WORDS",
+      action: "TEST_INIT",
+      name: "on_word"
+    });
   }
   render() {
+    console.log(
+      "foodWords",
+      this.state.food_words,
+      "props",
+      this.props.on_word
+    );
     // const { point, name } = this.props.data;
     return (
       <div>
         <div className="container">
           <h1>GAME START!</h1>
           <div className="top_container">
-            <WordsBoard />
+            <WordsBoard voca={this.state.food_words} />
             <Ranking rankers={this.props.data} />
           </div>
           <Textbox />

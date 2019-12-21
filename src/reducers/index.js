@@ -1,3 +1,6 @@
+import foodWords from "food-words";
+
+// const parse_word = JSON.parse(foodWords);
 export const initializeState = {
   data: [
     { name: "쫑 #1575564446374", point: "344444" },
@@ -18,7 +21,9 @@ export const initializeState = {
     start: {
       title: ""
     }
-  }
+  },
+  food_list: foodWords,
+  on_word: []
 };
 
 /* 액션 생성 함수 */
