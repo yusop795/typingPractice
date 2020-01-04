@@ -8,21 +8,34 @@ function* findWordToClear() {
   let set_words = [];
 }
 
+/* action 함수는 단순히 store의 값을 넣고 빼고 수정하는 작업만 할 수 있기 때문에 데이터를 받아서 UI에 보여 주기 위한 간단한 작업, 또는 validation 작업을 거치기 위해서 saga를 사용한다
+saga를 통해 어떤 action 함수를 사용해서 어떤 데이터, 또는 UI에 필요한 상태값을 스토어에 넣을 것인지를 결정할 수 있다
+*/
+
 function* setInitialWord(action) {
+  /* foodWords 모듈을 변수에 담음 */
   const words = foodWords;
   let initial_words = [];
+
   for (let i = 0, len = 12; i < len; i++) {
+    /*getRandomArray 함수 실행해서 랜덤으로 단어 뽑아낸다 */
     let voca = getRandomArray(words);
     console.log("for 문", voca);
     let voca_object = {
       word: voca,
-      pleac: i
+      place: i
     };
     initial_words.push(voca_object);
   }
+  /* put 함수 타고 스토어에 뽑아낸 단어를 넣을 수 있다 
+    TypingField에서 saga call 할 때 넘겨 받았던 객체 내 action 키로 받았던 "TEST_INIT"로 실행 시키고자 하는 action을 찾는다
+  => reducers/index.js 파일로*/
+
   console.log("initial_Words", initial_words);
   yield put({ type: action.action, addBy: initial_words, name: action.name });
 }
+
+/* INITIAL_WORDS 키를 받았을 때  setInitialWord function 실행 */
 
 export function* rootSaga() {
   yield all([

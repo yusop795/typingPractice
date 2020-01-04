@@ -2,13 +2,13 @@ import React from "react";
 import "./wordsboard.scss";
 
 function WordsBoard(words) {
-  console.log("ddd >>>>", Array.isArray(words.voca), words.voca.length);
+  /* typing field에서 받은 랜덤 단어 = words */
   return (
     <ul className="board_container">
       {words.voca.map((d, i) => {
         return (
-          <li key={i} className="board_item">
-            <div className="item">{d}</div>
+          <li key={i} place={d.place} className="board_item">
+            <div className="item">{d.word}</div>
           </li>
         );
       })}

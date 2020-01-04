@@ -14,28 +14,11 @@ const API_CALL_WITH = scriptHelper(`
 https://opendict.korean.go.kr/api/search?certkey_no=1161&key=${word_api_key}&target_type=search&part=word&q=나무&sort=popular&start=1&num=100&type1=word`);
 
 class TypingField extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      food_words: []
-    };
+  constructor(props) {
+    super(props);
   }
-  /* xml */
-  getWordsFrom = () => {
-    console.log("getWordsFrom start");
-    // const wrap = document.querySelector(wrapper);
-    API_CALL_WITH.then(res => {
-      console.log("success", res);
-    }).catch(error => {
-      console.log("api call error", error);
-    });
-  };
   componentDidMount() {
-    // const list_up = Array.from(this.props.food_list.slice(0, 100));
-    // console.log("list_up", typeof list_up, list_up);
-    // this.setState({
-    //   food_words: list_up
-    // });
+    /* 해당 컴포넌트 초기값 세팅 될 때 실행됨 => saga call (saga/index.js) INITIAL_WORDS 을 키로 실행시킬 function 을 찾는다*/
     this.props.actionReducerCall({
       type: "INITIAL_WORDS",
       action: "TEST_INIT",
@@ -43,19 +26,14 @@ class TypingField extends React.Component {
     });
   }
   render() {
-    console.log(
-      "foodWords",
-      this.state.food_words,
-      "props",
-      this.props.on_word
-    );
+    console.log("rendom words ", this.props.on_word);
     // const { point, name } = this.props.data;
     return (
       <div>
         <div className="container">
           <h1>GAME START!</h1>
           <div className="top_container">
-            <WordsBoard voca={this.state.food_words} />
+            <WordsBoard voca={this.props.on_word} />
             <Ranking rankers={this.props.data} />
           </div>
           <Textbox />

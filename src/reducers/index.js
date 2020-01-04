@@ -26,6 +26,12 @@ export const initializeState = {
   on_word: []
 };
 
+/* "TEST_INIT" case 실행
+  saga 함수에서 넘겨 받았던 action.name("on_word")의 키에 action.addBy(saga 함수에서 뽑아낸 12개의 단어 배열)를 넣어
+  준다
+  여기서 넣어 줄 대상은 store, store 내에 action.name()을 찾아서 action.addBy 을 넣는다.
+*/
+
 /* 액션 생성 함수 */
 export const initialReducer = (state = {}, action) => {
   switch (action.type) {
