@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "./textbox.scss";
+import * as _ from "lodash";
 
 class Textbox extends React.Component {
   constructor() {
@@ -10,21 +11,25 @@ class Textbox extends React.Component {
     };
   }
   keyPressEnter = event => {
-    if (event.key == "Enter") {
-      console.log("ddd", this.props.ui_material);
-      this.props.actionReducerCall({
-        type: "TEST_INIT",
-        name: "ui_material",
-        addBy: {
-          ...this.props.ui_material,
-          ready: {
-            title: this.state.input_value
-          }
-        }
-      });
+    console.log("event", event.key);
+    const wordArray = this.props.on_word;
+    const inputWord = this.state.input_value;
+    if (event.key === "Enter") {
+      const isHere = _.find(wordArray, { word: inputWord });
+      if (isHere) {
+        console.log("ddd", isHere);
+        this.props.actionReducerCall({
+          type: "CLEAR_WORD",
+          action: "TEST_INIT",
+          name: "typingText",
+          addBy: isHere
+        });
+        return this.resetTextBox();
+      } else {
+        console.log("틀림~~");
+      }
     }
     /*saga로 구현*/
-    return this.resetTextBox();
   };
   resetTextBox() {
     this.setState({
@@ -37,9 +42,12 @@ class Textbox extends React.Component {
     });
   };
   render() {
-    // console.log("textbox 렌더", this.props, this.state);
-    // const { point, name } = this.props.data;
-    console.log("textbox > ", this.props.ui_material.ready.title);
+    // console.log(
+    //   "typingText > ",
+    //   this.props.typingText,
+    //   "current words>>>",
+    //   this.props.on_word
+    // );
     return (
       <div className="textField">
         <input

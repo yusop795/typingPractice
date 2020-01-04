@@ -14,14 +14,7 @@ export const initializeState = {
     { name: "가나다#1575685003961", point: "20002" },
     { name: "가나다#1575684952280", point: "20001" }
   ],
-  ui_material: {
-    ready: {
-      title: ""
-    },
-    start: {
-      title: ""
-    }
-  },
+  typingText: "",
   food_list: foodWords,
   on_word: []
 };

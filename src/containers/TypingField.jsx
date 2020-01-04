@@ -9,10 +9,6 @@ import "./containers.scss";
 
 /*key, q는 필수값... q=> 검색어... 랜덤은 x*/
 
-const word_api_key = "D2D790187BAC564F51CAC51931A79F88";
-const API_CALL_WITH = scriptHelper(`
-https://opendict.korean.go.kr/api/search?certkey_no=1161&key=${word_api_key}&target_type=search&part=word&q=나무&sort=popular&start=1&num=100&type1=word`);
-
 class TypingField extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +22,7 @@ class TypingField extends React.Component {
     });
   }
   render() {
-    console.log("rendom words ", this.props.on_word);
+    // console.log("rendom words ", this.props.on_word);
     // const { point, name } = this.props.data;
     return (
       <div>

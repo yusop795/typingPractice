@@ -1,8 +1,10 @@
 import { all, takeLatest, takeEvery, put } from "redux-saga/effects";
 import foodWords from "food-words";
 import getRandomArray from "../helpers/getRandomArray";
+import * as _ from "lodash";
 
-function* findWordToClear() {
+function* findWordToClear(action) {
+  console.log("findWordToClear", action);
   /* 워드 클리어 시 새로운 워드 넣어 줄 것 */
   const words = foodWords;
   let set_words = [];
@@ -20,7 +22,7 @@ function* setInitialWord(action) {
   for (let i = 0, len = 12; i < len; i++) {
     /*getRandomArray 함수 실행해서 랜덤으로 단어 뽑아낸다 */
     let voca = getRandomArray(words);
-    console.log("for 문", voca);
+    // console.log("for 문", voca);
     let voca_object = {
       word: voca,
       place: i
