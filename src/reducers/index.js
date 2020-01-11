@@ -1,19 +1,9 @@
 import foodWords from "food-words";
+const ranks = require('../rank.json');
 
 // const parse_word = JSON.parse(foodWords);
 export const initializeState = {
-  data: [
-    { name: "쫑 #1575564446374", point: "344444" },
-    { name: "유윤선4#1575564172234", point: "30055" },
-    { name: "가나다#1575685560013", point: "20009" },
-    { name: "가나다#1575685524456", point: "20008" },
-    { name: "가나다#1575685389883", point: "20007" },
-    { name: "가나다#1575685216571", point: "20005" },
-    { name: "가나다#1575685196665", point: "20004" },
-    { name: "가나다#1575685044106", point: "20003" },
-    { name: "가나다#1575685003961", point: "20002" },
-    { name: "가나다#1575684952280", point: "20001" }
-  ],
+  data: ranks,
   typingText: "",
   food_list: foodWords,
   on_word: []
