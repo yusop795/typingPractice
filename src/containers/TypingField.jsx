@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import axios from "axios";
-import scriptHelper from "../helpers/scriptHelper";
 import Textbox from "../components/textbox/Textbox";
 import Ranking from "../components/ranking/Ranking";
 import WordsBoard from "../components/wordsboard/WordsBoard";
@@ -10,9 +8,6 @@ import "./containers.scss";
 /*key, q는 필수값... q=> 검색어... 랜덤은 x*/
 
 class TypingField extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     /* 해당 컴포넌트 초기값 세팅 될 때 실행됨 => saga call (saga/index.js) INITIAL_WORDS 을 키로 실행시킬 function 을 찾는다*/
     this.props.actionReducerCall({

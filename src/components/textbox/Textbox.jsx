@@ -3,21 +3,24 @@ import { connect } from "react-redux";
 import "./textbox.scss";
 import * as _ from "lodash";
 
+let score = 0;
 class Textbox extends React.Component {
   constructor() {
     super();
     this.state = {
-      input_value: ""
+      input_value: "",
+      score
     };
   }
   keyPressEnter = event => {
-    console.log("event", event.key);
     const wordArray = this.props.on_word;
     const inputWord = this.state.input_value;
     if (event.key === "Enter") {
       const isHere = _.find(wordArray, { word: inputWord });
       if (isHere) {
-        console.log("ddd", isHere);
+        console.log("정답!!!", isHere);
+        score = score + isHere.word.length;
+        console.log('현재 스코어 : ', score);
         this.props.actionReducerCall({
           type: "CLEAR_WORD",
           action: "TEST_INIT",
@@ -29,14 +32,18 @@ class Textbox extends React.Component {
         });
         return this.resetTextBox();
       } else {
-        console.log("틀림~~");
+        score -= 1;
+        console.log("틀림!!!");
+        console.log('현재 스코어 : ', score);
+        return this.resetTextBox();
       }
     }
     /*saga로 구현*/
   };
   resetTextBox() {
     this.setState({
-      input_value: ""
+      input_value: "",
+      score
     });
   }
   changeOnInput = e => {
