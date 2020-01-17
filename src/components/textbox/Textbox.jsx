@@ -22,7 +22,10 @@ class Textbox extends React.Component {
           type: "CLEAR_WORD",
           action: "TEST_INIT",
           name: "typingText",
-          addBy: isHere
+          addBy: {
+            inputWord: isHere,
+            prevWord: wordArray
+          }
         });
         return this.resetTextBox();
       } else {

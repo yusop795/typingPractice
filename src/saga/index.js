@@ -5,6 +5,7 @@ import * as _ from "lodash";
 
 function* findWordToClear(action) {
   console.log("findWordToClear", action);
+
   /* 워드 클리어 시 새로운 워드 넣어 줄 것 */
   const words = foodWords;
   let set_words = [];
