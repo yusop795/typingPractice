@@ -1,5 +1,11 @@
 import foodWords from "food-words";
-const ranks = require('../rank.json');
+let localData = localStorage.getItem('typingPractice');
+if(!localData){
+  localStorage.setItem('typingPractice',`[{"name":"이름없음#","point":0}]`);
+  localData = JSON.stringify([{"name":"이름없음#","point":0}]);
+};
+const ranks = JSON.parse(localData);
+
 
 // const parse_word = JSON.parse(foodWords);
 export const initializeState = {
