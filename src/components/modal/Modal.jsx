@@ -1,24 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import Textbox from "../components/textbox/Textbox";
-import "./containers.scss";
+import "./modal.scss";
+import makeNewRank from "../../helpers/makeNewRank";
+/* makeNewRank({ name: "최한솔", point: 1002 }); */
 
-class ReadyGame extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+class Modal extends React.Component {
   render() {
-    // const { point, name } = this.props.data;
+    console.log("ddd", this.props);
     return (
-      <div>
-        <div className="ready_container">
-          <h1>GAME READY!</h1>
-          <Textbox />
-          <div className="btn_wrap">
-            <a className="page_to" href="/start">
-              게임 시작
-            </a>
+      <div className="layer_popup">
+        <div className="layer_bg"></div>
+        <div className="modal_container">
+          <div className="modal_body">
+            <div className="mo_head">GameOver!</div>
+            <div className="mo_body">랭킹 순위~</div>
+            <div></div>
+            <button></button>
           </div>
         </div>
       </div>
@@ -40,4 +37,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   getRow,
   mapDispatchToProps
-)(ReadyGame);
+)(Modal);

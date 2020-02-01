@@ -3,16 +3,19 @@ import { connect } from "react-redux";
 import Textbox from "../components/textbox/Textbox";
 import Ranking from "../components/ranking/Ranking";
 import WordsBoard from "../components/wordsboard/WordsBoard";
+import Timer from "../components/timer/Timer";
+import Modal from "../components/modal/Modal";
 import "./containers.scss";
 
 /*key, q는 필수값... q=> 검색어... 랜덤은 x*/
 
 class TypingField extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       timer: 0,
-      timerFunc: {}
+      timerFunc: {},
+      word: this.props.on_word
     };
   }
   componentDidMount() {
@@ -23,50 +26,42 @@ class TypingField extends React.Component {
       name: "on_word"
     });
   }
-  startTimer(time) {
-    console.log("start".time);
-    this.setState({
-      timer: time
-    });
-    // this.state.timerFunc = setInterval( decrementTime(), 1000);
-    const timerfunc = () => {
-      let timer_start = this.state.timer;
-      const set = document.querySelector(".show_num");
-      console.log("timer_start", timer_start);
-      set.innerText = timer_start;
-      if (timer_start > 0) {
-        timer_start--;
-        this.setState({
-          timer: timer_start
-        });
-      } else {
-        clearInterval(timer_starting);
-      }
-    };
-
-    const timer_starting = setInterval(timerfunc(), 1000);
+  componentDidUpdate(prevProps) {
+    // 전형적인 사용 사례 (props 비교를 잊지 마세요)
+    if (this.props.on_word !== prevProps.on_word) {
+      this.setState({
+        word: this.props.on_word
+      });
+    }
   }
-  decrementTime() {}
   render() {
-    // console.log("rendom words ", this.props.on_word);
-    // const { point, name } = this.props.data;
     return (
       <div>
         <div className="container">
           <h1>GAME START!</h1>
           <div className="score_timer">
             <span className="timer">
-              남은 시간{" "}
-              <span className="show_num">{() => this.startTimer(30)}</span>s
+              남은 시간 <Timer set_time={120} />
             </span>
-            <span className="score">현재 점수 : 10</span>
+            <span className="score">현재 점수 : {this.props.game_score}</span>
           </div>
           <div className="top_container">
-            <WordsBoard voca={this.props.on_word} />
+            {
+              <ul className="board_container">
+                {this.props.on_word.map((d, i) => {
+                  return (
+                    <li key={i} place={d.place} className="board_item">
+                      <div className="item">{d.word}</div>
+                    </li>
+                  );
+                })}
+              </ul>
+            }
             <Ranking rankers={this.props.data} />
           </div>
-          <Textbox />
+          <Textbox clearWord={words => this.setState({ word: words })} />
         </div>
+        {this.props.game_over ? <Modal /> : ""}
       </div>
     );
   }

@@ -5,8 +5,8 @@ import * as _ from "lodash";
 
 let score = 0;
 class Textbox extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       input_value: "",
       score
@@ -15,26 +15,36 @@ class Textbox extends React.Component {
   keyPressEnter = event => {
     const wordArray = this.props.on_word;
     const inputWord = this.state.input_value;
+    console.log("keyPressEnter", wordArray, inputWord);
     if (event.key === "Enter") {
       const isHere = _.find(wordArray, { word: inputWord });
       if (isHere) {
         console.log("정답!!!", isHere);
         score = score + isHere.word.length;
-        console.log('현재 스코어 : ', score);
+        console.log("현재 스코어 : ", score);
         this.props.actionReducerCall({
           type: "CLEAR_WORD",
-          action: "TEST_INIT",
-          name: "typingText",
+          action: "UPDATE_BOARD",
+          name: "on_word",
           addBy: {
             inputWord: isHere,
-            prevWord: wordArray
+            prevWord: wordArray,
+            score: score
           }
         });
+
+        this.props.clearWord(wordArray);
         return this.resetTextBox();
       } else {
         score -= 1;
         console.log("틀림!!!");
-        console.log('현재 스코어 : ', score);
+        console.log("현재 스코어 : ", score);
+        this.props.actionReducerCall({
+          type: "CHANGE_STORE_VALUE",
+          action: "TEST_INIT",
+          name: "game_score",
+          data: score
+        });
         return this.resetTextBox();
       }
     }

@@ -4,15 +4,25 @@ import getRandomArray from "../helpers/getRandomArray";
 import makeNewRank from "../helpers/makeNewRank";
 // import * as _ from "lodash";
 
+const words_group = foodWords;
 //예시입니다. 게임종료시 아래 함수에 객체를 넣어주면 랭킹에 반영이 됩니다. 적용시 삭제 부탁드려요!
-makeNewRank({name:"최한솔",point:1002});
+makeNewRank({ name: "최한솔", point: 1002 });
 
 function* findWordToClear(action) {
-  console.log("findWordToClear", action);
-
+  const prev_word = action.addBy.prevWord;
   /* 워드 클리어 시 새로운 워드 넣어 줄 것 */
-  const words = foodWords;
-  let set_words = [];
+  let voca = getRandomArray(words_group);
+  prev_word[action.addBy.inputWord.place].word = voca;
+  yield put({
+    type: action.action,
+    name: action.name,
+    addBy: prev_word,
+    game_score: action.addBy.score
+  });
+}
+
+function* modifyStoreValue(action) {
+  yield put({ type: action.action, addBy: action.data, name: action.name });
 }
 
 /* action 함수는 단순히 store의 값을 넣고 빼고 수정하는 작업만 할 수 있기 때문에 데이터를 받아서 UI에 보여 주기 위한 간단한 작업, 또는 validation 작업을 거치기 위해서 saga를 사용한다
@@ -47,6 +57,7 @@ function* setInitialWord(action) {
 export function* rootSaga() {
   yield all([
     yield takeLatest("CLEAR_WORD", findWordToClear),
-    yield takeEvery("INITIAL_WORDS", setInitialWord)
+    yield takeEvery("INITIAL_WORDS", setInitialWord),
+    yield takeEvery("CHANGE_STORE_VALUE", modifyStoreValue)
   ]);
 }
