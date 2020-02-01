@@ -8,14 +8,14 @@ class Textbox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      validation: false,
       input_value: "",
       score
     };
   }
-  keyPressEnter = event => {
+  keyPressEnterGame = event => {
     const wordArray = this.props.on_word;
     const inputWord = this.state.input_value;
-    console.log("keyPressEnter", wordArray, inputWord);
     if (event.key === "Enter") {
       const isHere = _.find(wordArray, { word: inputWord });
       if (isHere) {
@@ -50,6 +50,18 @@ class Textbox extends React.Component {
     }
     /*saga로 구현*/
   };
+  keyPressEnterReady = event => {
+    if (event.key === "Enter") {
+      if (this.state.input_value === "") {
+        this.setState({
+          validation: true
+        });
+      }
+    }
+  };
+  linkToChange() {
+    window.location.href = `/start?${this.state.input_value}`;
+  }
   resetTextBox() {
     this.setState({
       input_value: "",
@@ -62,21 +74,47 @@ class Textbox extends React.Component {
     });
   };
   render() {
-    // console.log(
-    //   "typingText > ",
-    //   this.props.typingText,
-    //   "current words>>>",
-    //   this.props.on_word
-    // );
     return (
       <div className="textField">
         <input
           type="text"
-          className="textbox"
+          className={`textbox ${this.state.validation ? "is_require" : ""}`}
           value={this.state.input_value}
           onChange={this.changeOnInput}
-          onKeyPress={this.keyPressEnter}
+          onKeyPress={
+            this.props.field === "ready"
+              ? this.keyPressEnterReady
+              : this.keyPressEnterGame
+          }
         />
+        {this.props.field === "ready" && this.state.validation ? (
+          <div className="error_message">
+            필수값입니다.
+            <br />
+            이름을 입력하신 후 게임시작 버튼을 눌러 주세요.
+          </div>
+        ) : (
+          ""
+        )}
+        {this.props.field === "ready" ? (
+          <div className="btn_wrap">
+            {this.state.input_value ? (
+              <button
+                type="button"
+                className="page_to"
+                onClick={() => this.linkToChange()}
+              >
+                게임 시작
+              </button>
+            ) : (
+              <button type="button" disabled className="page_to">
+                게임 시작
+              </button>
+            )}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

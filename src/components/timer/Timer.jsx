@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import "./timer.scss";
 
 class Timer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     /* seconds => "" 일 경우 타이머 x , 초로 숫자를 적어준다*/
     this.state = {
       time: {},
-      seconds: 1
+      seconds: 20
     };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
@@ -33,7 +33,7 @@ class Timer extends React.Component {
     return obj;
   }
   startTimer() {
-    if (this.timer == 0 && this.state.seconds > 0) {
+    if (this.timer === 0 && this.state.seconds > 0) {
       this.timer = setInterval(this.countDown, 1000);
     }
   }
@@ -46,7 +46,7 @@ class Timer extends React.Component {
     });
 
     /* 타이머가 끝나는 시점에 게임 진행을 막아야 함 */
-    if (seconds == 0) {
+    if (seconds === 0) {
       clearInterval(this.timer);
       /* 타이머가 끝나면 모달 띄움 */
       this.props.actionReducerCall({

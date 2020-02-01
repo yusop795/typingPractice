@@ -5,6 +5,7 @@ import makeNewRank from "../helpers/makeNewRank";
 // import * as _ from "lodash";
 
 const words_group = foodWords;
+
 function* findWordToClear(action) {
   const prev_word = action.addBy.prevWord;
   /* 워드 클리어 시 새로운 워드 넣어 줄 것 */

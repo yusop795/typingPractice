@@ -9,11 +9,11 @@ const ranks = JSON.parse(localData);
 // const parse_word = JSON.parse(foodWords);
 export const initializeState = {
   data: ranks,
-  typingText: "",
+  player_name: "",
+  game_score: 0,
   food_list: foodWords,
   on_word: [],
-  game_over: false,
-  game_score: 0
+  game_over: false
 };
 
 /* "TEST_INIT" case 실행

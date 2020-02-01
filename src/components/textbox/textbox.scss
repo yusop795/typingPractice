@@ -17,4 +17,22 @@
   &:focus {
     border-color: darkturquoise;
   }
+  &.is_require {
+    border-color: red;
+  }
+}
+.error_message {
+  font-size: 12px;
+  color: red;
+  margin-top: 2px;
+}
+.page_to {
+  background: gray;
+  &:disabled {
+    cursor: not-allowed;
+    background: gray;
+    &:hover {
+      background: gray;
+    }
+  }
 }

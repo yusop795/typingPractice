@@ -25,9 +25,16 @@ class TypingField extends React.Component {
       action: "TEST_INIT",
       name: "on_word"
     });
+    /* 유저 이름 저장함*/
+    this.props.actionReducerCall({
+      type: "CHANGE_STORE_VALUE",
+      action: "TEST_INIT",
+      name: "player_name",
+      data: decodeURI(window.location.search.substr(1).split("?")[0])
+    });
   }
   componentDidUpdate(prevProps) {
-    // 전형적인 사용 사례 (props 비교를 잊지 마세요)
+    // 전형적인 사용ㄴ 사례 (props 비교를 잊지 마세요)
     if (this.props.on_word !== prevProps.on_word) {
       this.setState({
         word: this.props.on_word
@@ -59,7 +66,10 @@ class TypingField extends React.Component {
             }
             <Ranking rankers={this.props.data} />
           </div>
-          <Textbox clearWord={words => this.setState({ word: words })} />
+          <Textbox
+            field="game"
+            clearWord={words => this.setState({ word: words })}
+          />
         </div>
         {this.props.game_over ? <Modal /> : ""}
       </div>
