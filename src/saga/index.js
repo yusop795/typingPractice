@@ -5,7 +5,7 @@ import makeNewRank from "../helpers/makeNewRank";
 // import * as _ from "lodash";
 
 //예시입니다. 게임종료시 아래 함수에 객체를 넣어주면 랭킹에 반영이 됩니다. 적용시 삭제 부탁드려요!
-makeNewRank({name:"최한솔",point:1002});
+makeNewRank({name:"김혜인",point:4400});
 
 function* findWordToClear(action) {
   console.log("findWordToClear", action);
