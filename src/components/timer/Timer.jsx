@@ -8,7 +8,7 @@ class Timer extends React.Component {
     /* seconds => "" 일 경우 타이머 x , 초로 숫자를 적어준다*/
     this.state = {
       time: {},
-      seconds: 2
+      seconds: 60
     };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
