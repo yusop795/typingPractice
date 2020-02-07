@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import "./modal.scss";
 import makeNewRank from "../../helpers/makeNewRank";
-/* makeNewRank({ name: "최한솔", point: 1002 }); */
 
 class Modal extends React.Component {
   constructor(props) {
