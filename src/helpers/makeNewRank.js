@@ -14,6 +14,5 @@ export default rank => {
     if(data.length > 10){
         data.pop();
     }
-    console.log('랭킹 결과값 : ', data);
     return localStorage.setItem('typingPractice', JSON.stringify(data))
 };

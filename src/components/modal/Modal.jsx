@@ -11,7 +11,6 @@ class Modal extends React.Component {
     };
   }
   gameOver() {
-    console.log("game over");
     makeNewRank({
       name: this.props.player_name,
       point: this.props.game_score
@@ -21,7 +20,6 @@ class Modal extends React.Component {
     });
   }
   render() {
-    console.log("ddd", this.props);
     return (
       <div className="layer_popup">
         <div className="layer_bg"></div>

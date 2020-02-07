@@ -45,8 +45,6 @@ function* setInitialWord(action) {
   /* put 함수 타고 스토어에 뽑아낸 단어를 넣을 수 있다 
     TypingField에서 saga call 할 때 넘겨 받았던 객체 내 action 키로 받았던 "TEST_INIT"로 실행 시키고자 하는 action을 찾는다
   => reducers/index.js 파일로*/
-
-  console.log("initial_Words", initial_words);
   yield put({ type: action.action, addBy: initial_words, name: action.name });
 }
 
