@@ -14,6 +14,7 @@ li {
 #root {
   height: 100%;
   > div {
+    min-width: 500px;
     height: 100%;
     background: url("./wood.jpg") no-repeat center;
     background-size: cover;
