@@ -19,9 +19,7 @@ class Textbox extends React.Component {
     if (event.key === "Enter") {
       const isHere = _.find(wordArray, { word: inputWord });
       if (isHere) {
-        console.log("정답!!!", isHere);
         score = score + isHere.word.length;
-        console.log("현재 스코어 : ", score);
         this.props.actionReducerCall({
           type: "CLEAR_WORD",
           action: "UPDATE_BOARD",
@@ -37,8 +35,6 @@ class Textbox extends React.Component {
         return this.resetTextBox();
       } else {
         score -= 1;
-        console.log("틀림!!!");
-        console.log("현재 스코어 : ", score);
         this.props.actionReducerCall({
           type: "CHANGE_STORE_VALUE",
           action: "TEST_INIT",

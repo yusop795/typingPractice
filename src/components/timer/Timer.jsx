@@ -8,7 +8,7 @@ class Timer extends React.Component {
     /* seconds => "" 일 경우 타이머 x , 초로 숫자를 적어준다*/
     this.state = {
       time: {},
-      seconds: 200
+      seconds: 60
     };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
@@ -45,8 +45,9 @@ class Timer extends React.Component {
       seconds: seconds
     });
 
-    /* 타이머가 끝나는 시점에 게임 진행을 막아야 함 */
     if (seconds === 0) {
+      /* 타이머가 끝나는 시점에 입력창 비활성화 */
+      document.querySelector(".textbox").readOnly = true;
       clearInterval(this.timer);
       /* 타이머가 끝나면 모달 띄움 */
       this.props.actionReducerCall({

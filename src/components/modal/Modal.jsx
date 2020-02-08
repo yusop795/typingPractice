@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import "./modal.scss";
 import makeNewRank from "../../helpers/makeNewRank";
-/* makeNewRank({ name: "최한솔", point: 1002 }); */
 
 class Modal extends React.Component {
   constructor(props) {
@@ -12,7 +11,6 @@ class Modal extends React.Component {
     };
   }
   gameOver() {
-    console.log("game over");
     makeNewRank({
       name: this.props.player_name,
       point: this.props.game_score
@@ -22,7 +20,6 @@ class Modal extends React.Component {
     });
   }
   render() {
-    console.log("ddd", this.props);
     return (
       <div className="layer_popup">
         <div className="layer_bg"></div>
@@ -30,19 +27,17 @@ class Modal extends React.Component {
           {this.state.everything_done ? (
             <div className="modal_body">
               <div className="mo_head">GameOver!</div>
-              <div className="mo_body">
-                <a href="/ready">또 하시겠어요? 🙌</a>
-              </div>
+              <a href="/ready">
+                <div className="mo_body">
+                  <span role="img" aria-label="clap">또 하시겠어요?🙌</span>
+                </div>
+              </a>
             </div>
           ) : (
             <div className="modal_body">
-              <div className="mo_head">GameOver!</div>
-              <div className="mo_body">랭킹 순위~</div>
-              <div>{this.props.player_name}</div>
-              <div>{this.props.game_score}</div>
-              <button type="button" onClick={() => this.gameOver()}>
-                확인
-              </button>
+              <p className="mo_head">GameOver !</p>
+              <p className="mo_username">{this.props.player_name}님의 점수는 {this.props.game_score}점 입니다.</p>
+              <button type="button" onClick={() => this.gameOver()}>확인</button>
             </div>
           )}
         </div>

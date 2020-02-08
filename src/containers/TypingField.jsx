@@ -32,6 +32,8 @@ class TypingField extends React.Component {
       name: "player_name",
       data: decodeURI(window.location.search.substr(1).split("?")[0])
     });
+    /* 게임시작시 입력창에 포커스 */
+    document.querySelector('.textbox').focus();
   }
   componentDidUpdate(prevProps) {
     // 전형적인 사용ㄴ 사례 (props 비교를 잊지 마세요)

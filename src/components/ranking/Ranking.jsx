@@ -2,7 +2,6 @@ import React from "react";
 import "./ranking.scss";
 
 function Ranking(ranking) {
-  console.log("ranking", ranking.rankers);
   return (
     <div className="ranking_container">
       <strong>Ranking</strong>
