@@ -42,15 +42,20 @@ class TypingField extends React.Component {
     }
   }
   render() {
+    console.log("ddd", this.props);
     return (
-      <div>
+      <div className="game_container">
         <div className="container">
-          <h1>GAME START!</h1>
-          <div className="score_timer">
-            <span className="timer">
-              남은 시간 <Timer set_time={120} />
-            </span>
-            <span className="score">현재 점수 : {this.props.game_score}</span>
+          <div className="contaienr_head">
+            <h1>
+              <span>{this.props.player_name}</span> 님께서 타자 연습 중입니다!
+            </h1>
+            <div className="score_timer">
+              <span className="timer">
+                남은 시간 <Timer set_time={120} />
+              </span>
+              <span className="score">SCORE : {this.props.game_score}</span>
+            </div>
           </div>
           <div className="top_container">
             {
