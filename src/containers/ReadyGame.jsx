@@ -6,14 +6,20 @@ import "./containers.scss";
 class ReadyGame extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      height: 0
+    };
+  }
+  componentDidMount() {
+    const winHeight = window.innerHeight;
+    console.log("ddd", winHeight);
   }
   render() {
     // const { point, name } = this.props.data;
     return (
-      <div>
+      <div className="game_ready" style={{}}>
         <div className="ready_container">
-          <h1>GAME READY!</h1>
+          <h1>이름을 입력해 주세요 🙌</h1>
           <Textbox onClickButton={this.savePlayerName} field="ready" />
         </div>
       </div>
